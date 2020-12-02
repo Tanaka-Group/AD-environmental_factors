@@ -1,6 +1,6 @@
 # Impact of environmental factors in predicting daily severity scores of atopic dermatitis
 
-This repository presents the code written for the paper by **Hurault et al. (2020), "Impact of environmental factors in predicting daily severity scores of atopic dermatitis"** (preprint).
+This repository presents the code written for the paper by **Hurault et al. (2020)**, [Impact of environmental factors in predicting daily severity scores of atopic dermatitis](https://www.medrxiv.org/content/10.1101/2020.10.27.20220947v1) (preprint).
 The code is written in R language for statistical computing.
 
 ## File structure 
