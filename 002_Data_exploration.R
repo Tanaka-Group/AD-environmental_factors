@@ -10,28 +10,23 @@ len <- length(df$ID)
 concat_symptoms = tibble(type = c(rep('dryness', len), rep('itching', len), rep('sleep', len), rep('redness', len), rep('oozing', len), rep('edema', len)),
                          value = c(df$dry, df$itching, df$sleep, df$redness, df$oozing, df$edema))
 
-stats_symptoms = concat_symptoms %>%
+stats_symptoms <- concat_symptoms %>%
   group_by(type, value) %>%
-  summarize(count = n())
-stats_symptoms <- stats_symptoms %>%
+  summarize(count = n()) %>%
   group_by(type) %>%
   mutate(density = count / sum(count))
 
-ggplot(data = stats_symptoms) +
-  geom_col(mapping = aes(x = value, y = density), width = 0.9) +
+ggplot(data = stats_symptoms,
+       aes(x = value, y = density)) +
+  geom_col(width = 0.9) +
   facet_wrap(~type) +
   coord_cartesian(ylim = c(0, 1)) +
-  labs(x = "Sign score ", y = "")+
-  theme_bw() +
-  theme(title = element_blank(),
-        axis.title.y = element_blank(),
-        legend.position = "none",
-        axis.text.x = element_text(size = 12),
-        axis.text.y = element_text(size = 12),
-        strip.text.x = element_text(size = 13))
+  labs(x = "Sign score ", y = "Frequency") +
+  scale_y_continuous(expand = c(0, 0)) +
+  theme_bw(base_size = 20)
 
 if (FALSE) {
-  ggsave(file.path("plots", "hist_signs.jpg"),
+  ggsave(file.path("Plots", "hist_signs.jpg"),
          width = 13, height = 8, units = "cm", dpi = 300, scale = 2)
 }
 
@@ -56,7 +51,7 @@ ggplot(data = nt)+
         legend.position = "top")
 
 if (FALSE) {
-  ggsave(file.path("plots", "n(t).jpg"),
+  ggsave(file.path("Plots", "n(t).jpg"),
          width = 13, height = 8, units = "cm", dpi = 300, scale = 2)
 }
 
@@ -134,6 +129,7 @@ plot_trajectories <- function(df, patient_id) {
 }
 
 if (FALSE) {
+  # 179 for Figure 1
   lapply(c("068", "084", "108", "120", "126", "134", "179", "180", "188", "193", "195"),
          function(x) {
            plot_trajectories(df, paste0("AD-", x))

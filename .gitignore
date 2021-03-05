@@ -36,9 +36,5 @@ vignettes/*.pdf
 rsconnect/
 .Rproj.user
 
-Expl_2018_files/*
-Symptoms_breakdown/*
 Results_storage/*
-Data processing/*
-Data exploration/*
 Plots/*
